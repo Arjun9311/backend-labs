@@ -1,0 +1,251 @@
+{
+  "info": {
+    "_postman_id": "c1f2b842-70b1-4d1a-8bb8-123456789abc",
+    "name": "Lab 2: SQLite database and CRUD routes",
+    "description": "Postman collection for Lab 2 Express + SQLite CRUD routes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. GET All Books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            ""
+          ]
+        },
+        "description": "Retrieve all books from the database."
+      },
+      "response": []
+    },
+    {
+      "name": "2. GET Book by ID - Success (200)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/1/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "1",
+            ""
+          ]
+        },
+        "description": "Retrieve book with ID 1."
+      },
+      "response": []
+    },
+    {
+      "name": "3. GET Book by ID - Not Found (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/999/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "999",
+            ""
+          ]
+        },
+        "description": "Attempt to retrieve non-existent book."
+      },
+      "response": []
+    },
+    {
+      "name": "4. GET Book by ID - Invalid ID (400)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/abc/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "abc",
+            ""
+          ]
+        },
+        "description": "Attempt to retrieve a book with non-integer ID."
+      },
+      "response": []
+    },
+    {
+      "name": "5. POST Add Book - Success (201)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Structure and Interpretation of Computer Programs\",\n  \"author\": \"Harold Abelson\",\n  \"price\": 45,\n  \"pages\": 657\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            ""
+          ]
+        },
+        "description": "Add a new book to the database."
+      },
+      "response": []
+    },
+    {
+      "name": "6. POST Add Book - Invalid Input (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"\",\n  \"author\": \"Invalid Book\",\n  \"price\": -5,\n  \"pages\": 100\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            ""
+          ]
+        },
+        "description": "Attempt to add a book with empty title and negative price."
+      },
+      "response": []
+    },
+    {
+      "name": "7. PUT Update Book - Success (200)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"To Kill a Mockingbird (Special Edition)\",\n  \"author\": \"Harper Lee\",\n  \"price\": 20,\n  \"pages\": 300\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books/1/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "1",
+            ""
+          ]
+        },
+        "description": "Update existing book with ID 1."
+      },
+      "response": []
+    },
+    {
+      "name": "8. PUT Update Book - Not Found (404)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Ghost Book\",\n  \"author\": \"Ghost Writer\",\n  \"price\": 25,\n  \"pages\": 200\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books/999/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "999",
+            ""
+          ]
+        },
+        "description": "Attempt to update non-existent book."
+      },
+      "response": []
+    },
+    {
+      "name": "9. DELETE Book - Success (200)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/10/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "10",
+            ""
+          ]
+        },
+        "description": "Delete existing book with ID 10."
+      },
+      "response": []
+    },
+    {
+      "name": "10. DELETE Book - Not Found (404)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/999/",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "999",
+            ""
+          ]
+        },
+        "description": "Attempt to delete non-existent book."
+      },
+      "response": []
+    }
+  ]
+}
+
