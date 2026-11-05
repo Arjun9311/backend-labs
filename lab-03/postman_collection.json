@@ -1,0 +1,474 @@
+{
+  "info": {
+    "_postman_id": "lab03-rest-api-query-params-debugging",
+    "name": "Lab 3: REST API, Query Parameters, Validation & Debugging",
+    "description": "Postman Collection for Lab 3 Express + SQLite API testing query parameters, sorting, filtering, pagination, payload validation, and consistent error handling.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "GET /books - Default (First 10 books)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ]
+        },
+        "description": "Retrieves default 10 books ordered by id ASC."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books - Search by Title (?search_q=Clean)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books?search_q=Clean",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ],
+          "query": [
+            {
+              "key": "search_q",
+              "value": "Clean"
+            }
+          ]
+        },
+        "description": "Searches for books with 'Clean' in the title using title LIKE ?."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books - Sort by Price ASC (?order_by=price&order=ASC)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books?order_by=price&order=ASC&limit=15",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ],
+          "query": [
+            {
+              "key": "order_by",
+              "value": "price"
+            },
+            {
+              "key": "order",
+              "value": "ASC"
+            },
+            {
+              "key": "limit",
+              "value": "15"
+            }
+          ]
+        },
+        "description": "Sorts books by price in ascending order."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books - Sort by Price DESC (?order_by=price&order=DESC)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books?order_by=price&order=DESC&limit=15",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ],
+          "query": [
+            {
+              "key": "order_by",
+              "value": "price"
+            },
+            {
+              "key": "order",
+              "value": "DESC"
+            },
+            {
+              "key": "limit",
+              "value": "15"
+            }
+          ]
+        },
+        "description": "Sorts books by price in descending order."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books - Price Range Filter (?min_price=12&max_price=20)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books?min_price=12&max_price=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ],
+          "query": [
+            {
+              "key": "min_price",
+              "value": "12"
+            },
+            {
+              "key": "max_price",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Filters books using price BETWEEN ? AND ?."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books - Pagination (?limit=5&offset=5)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books?limit=5&offset=5",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ],
+          "query": [
+            {
+              "key": "limit",
+              "value": "5"
+            },
+            {
+              "key": "offset",
+              "value": "5"
+            }
+          ]
+        },
+        "description": "Paginates books with limit and offset."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books - Combined Filters (search + price + sort + page)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books?search_q=The&min_price=10&max_price=25&order_by=price&order=DESC&limit=3&offset=0",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ],
+          "query": [
+            {
+              "key": "search_q",
+              "value": "The"
+            },
+            {
+              "key": "min_price",
+              "value": "10"
+            },
+            {
+              "key": "max_price",
+              "value": "25"
+            },
+            {
+              "key": "order_by",
+              "value": "price"
+            },
+            {
+              "key": "order",
+              "value": "DESC"
+            },
+            {
+              "key": "limit",
+              "value": "3"
+            },
+            {
+              "key": "offset",
+              "value": "0"
+            }
+          ]
+        },
+        "description": "Demonstrates all query parameters working together in one query."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books - Invalid order_by (400 Bad Request)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books?order_by=password",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ],
+          "query": [
+            {
+              "key": "order_by",
+              "value": "password"
+            }
+          ]
+        },
+        "description": "Tests whitelist validation for order_by parameter."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books - Invalid Price Filter min_price > max_price (400)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books?min_price=50&max_price=20",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ],
+          "query": [
+            {
+              "key": "min_price",
+              "value": "50"
+            },
+            {
+              "key": "max_price",
+              "value": "20"
+            }
+          ]
+        },
+        "description": "Tests validation: min_price must not exceed max_price."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books/:bookId - Success (200 OK)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "1"
+          ]
+        },
+        "description": "Retrieves book with ID 1."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books/:bookId - Not Found (404 Not Found)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "999"
+          ]
+        },
+        "description": "Tests 404 response when bookId is not in the database."
+      },
+      "response": []
+    },
+    {
+      "name": "GET /books/:bookId - Invalid ID (400 Bad Request)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/abc",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "abc"
+          ]
+        },
+        "description": "Tests 400 response when bookId is not a positive integer."
+      },
+      "response": []
+    },
+    {
+      "name": "POST /books - Create Book (201 Created)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Designing Data-Intensive Applications\",\n  \"author\": \"Martin Kleppmann\",\n  \"price\": 45,\n  \"pages\": 616\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ]
+        },
+        "description": "Creates a new book and returns 201 Created with bookId."
+      },
+      "response": []
+    },
+    {
+      "name": "POST /books - Validation Failure (400 Bad Request)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"   \",\n  \"author\": \"Test Author\",\n  \"price\": \"invalid_price\",\n  \"pages\": -10\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ]
+        },
+        "description": "Tests validation failure on invalid title, price, or pages."
+      },
+      "response": []
+    },
+    {
+      "name": "PUT /books/:bookId - Update Book (200 OK)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Clean Code: Refactored Edition\",\n  \"author\": \"Robert C. Martin\",\n  \"price\": 42,\n  \"pages\": 480\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books/15",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "15"
+          ]
+        },
+        "description": "Updates an existing book by ID."
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE /books/:bookId - Delete Book (200 OK)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/15",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "15"
+          ]
+        },
+        "description": "Deletes an existing book by ID."
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE /books/:bookId - Non-existent ID (404 Not Found)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "999"
+          ]
+        },
+        "description": "Attempts to delete a non-existent book."
+      },
+      "response": []
+    },
+    {
+      "name": "Catch-All 404 - Unknown Route (404 Not Found)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/unknown-resource",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "unknown-resource"
+          ]
+        },
+        "description": "Tests catch-all middleware returning 404 with Route not found."
+      },
+      "response": []
+    }
+  ]
+}
