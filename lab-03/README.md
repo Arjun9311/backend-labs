@@ -1,7 +1,8 @@
 # Lab 3: REST API, Query Parameters, Validation, and Debugging
 
-> **🔗 GitHub Repository:** [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs)  
-> **🌐 Local Base URL:** [http://localhost:3000](http://localhost:3000)
+> **🔗 Live Deployment URL:** [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books)  
+> **🌐 Live Base URL:** [https://backend-labs-x8vk.onrender.com](https://backend-labs-x8vk.onrender.com)  
+> **📂 GitHub Repository:** [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs)
 
 ---
 
@@ -15,7 +16,8 @@
 | **Course** | Backend Development Fundamentals · Year II Term II |
 | **Faculty** | Mr Yugandhar Gurjalwar |
 | **College** | Aurora Deemed-to-be-University |
-| **Repository** | [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs) |
+| **Live Deployment** | [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books) |
+| **GitHub Repository** | [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs) |
 
 ---
 
@@ -136,22 +138,23 @@ The asynchronous initialization function `initializeDBAndServer()` executes at s
    npm test
    ```
 
-8. **Local Base URL:** [http://localhost:3000](http://localhost:3000)
+8. **Live Render URL:** [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books)
+9. **Local Base URL:** [http://localhost:3000](http://localhost:3000)
 
 ---
 
 ## 📡 API Endpoints
 
-| Method | Path | Example URL | Description | Status Code |
+| Method | Path | Live URL | Description | Status Code |
 |:---:|:---|:---|:---|:---:|
-| `GET` | `/` | `http://localhost:3000/` | API directory, student information & health check | `200 OK` |
-| `GET` | `/books` | `http://localhost:3000/books` | Retrieve books with default pagination (`limit=10`) | `200 OK` / `400 Bad Request` |
-| `GET` | `/books/:bookId` | `http://localhost:3000/books/1` | Retrieve a single book by ID | `200 OK` / `400 Bad Request` / `404 Not Found` |
-| `POST` | `/books` | `http://localhost:3000/books` | Create and insert a new book record | `201 Created` / `400 Bad Request` |
-| `PUT` | `/books/:bookId` | `http://localhost:3000/books/15` | Update details of an existing book by ID | `200 OK` / `400 Bad Request` / `404 Not Found` |
-| `DELETE` | `/books/:bookId` | `http://localhost:3000/books/15` | Delete a book record by ID | `200 OK` / `400 Bad Request` / `404 Not Found` |
-| `GET` | `/books/999` | `http://localhost:3000/books/999` | Verify 404 response for non-existent record | `404 Not Found` |
-| `GET` | `/*` | `http://localhost:3000/unknown-route` | Catch-all handler for undefined routes | `404 Not Found` |
+| `GET` | `/` | [Open Live Link](https://backend-labs-x8vk.onrender.com/) | API Directory / Root redirection | `200 OK` |
+| `GET` | `/books` | [Open Live Link](https://backend-labs-x8vk.onrender.com/books) | Retrieve books with default pagination (`limit=10`) | `200 OK` / `400 Bad Request` |
+| `GET` | `/books/:bookId` | [Open Live Link (ID 1)](https://backend-labs-x8vk.onrender.com/books/1) | Retrieve a single book by ID | `200 OK` / `400 Bad Request` / `404 Not Found` |
+| `POST` | `/books` | [API Endpoint](https://backend-labs-x8vk.onrender.com/books) | Create and insert a new book record | `201 Created` / `400 Bad Request` |
+| `PUT` | `/books/:bookId` | [API Endpoint (ID 15)](https://backend-labs-x8vk.onrender.com/books/15) | Update details of an existing book by ID | `200 OK` / `400 Bad Request` / `404 Not Found` |
+| `DELETE` | `/books/:bookId` | [API Endpoint (ID 15)](https://backend-labs-x8vk.onrender.com/books/15) | Delete a book record by ID | `200 OK` / `400 Bad Request` / `404 Not Found` |
+| `GET` | `/books/999` | [Open Live Link (404 Test)](https://backend-labs-x8vk.onrender.com/books/999) | Verify 404 response for non-existent record | `404 Not Found` |
+| `GET` | `/*` | [Open Live Link (Route 404)](https://backend-labs-x8vk.onrender.com/unknown-route) | Catch-all handler for undefined routes | `404 Not Found` |
 
 ---
 
@@ -159,18 +162,18 @@ The asynchronous initialization function `initializeDBAndServer()` executes at s
 
 All query parameters are optional and have built-in default values. They can be used individually or combined:
 
-| Parameter | Type | Default | Allowed Values / Constraints | Example URL | Description |
+| Parameter | Type | Default | Allowed Values / Constraints | Live Test URL | Description |
 |:---|:---:|:---:|:---|:---|:---|
-| `search_q` | String | `""` | Any text string | `?search_q=Clean` | Case-insensitive title search via `LIKE ?` |
-| `order_by` | String | `"id"` | `id`, `title`, `author`, `price`, `pages` | `?order_by=price` | Whitelisted column name to order results by |
-| `order` | String | `"ASC"` | `ASC`, `DESC` (case-insensitive) | `?order=DESC` | Sort direction (ascending or descending) |
-| `limit` | Integer | `10` | Integer between `1` and `100` | `?limit=5` | Maximum number of book records to return |
-| `offset` | Integer | `0` | Non-negative integer (`>= 0`) | `?offset=5` | Number of records to skip (for pagination) |
-| `min_price` | Integer | None | Non-negative integer (`>= 0`) | `?min_price=12` | Lower bound price filter (`price >= ?`) |
-| `max_price` | Integer | None | Non-negative integer (`>= 0`) | `?max_price=20` | Upper bound price filter (`price <= ?`) |
+| `search_q` | String | `""` | Any text string | [Test search_q=Clean](https://backend-labs-x8vk.onrender.com/books?search_q=Clean) | Case-insensitive title search via `LIKE ?` |
+| `order_by` | String | `"id"` | `id`, `title`, `author`, `price`, `pages` | [Test order_by=price](https://backend-labs-x8vk.onrender.com/books?order_by=price&order=ASC) | Whitelisted column name to order results by |
+| `order` | String | `"ASC"` | `ASC`, `DESC` (case-insensitive) | [Test order=DESC](https://backend-labs-x8vk.onrender.com/books?order_by=price&order=DESC) | Sort direction (ascending or descending) |
+| `limit` | Integer | `10` | Integer between `1` and `100` | [Test limit=5](https://backend-labs-x8vk.onrender.com/books?limit=5) | Maximum number of book records to return |
+| `offset` | Integer | `0` | Non-negative integer (`>= 0`) | [Test limit=5&offset=5](https://backend-labs-x8vk.onrender.com/books?limit=5&offset=5) | Number of records to skip (for pagination) |
+| `min_price` | Integer | None | Non-negative integer (`>= 0`) | [Test min_price=12](https://backend-labs-x8vk.onrender.com/books?min_price=12) | Lower bound price filter (`price >= ?`) |
+| `max_price` | Integer | None | Non-negative integer (`>= 0`) | [Test max_price=20](https://backend-labs-x8vk.onrender.com/books?max_price=20) | Upper bound price filter (`price <= ?`) |
 
 ### Combined Filter Example
-- **URL:** `http://localhost:3000/books?search_q=The&min_price=10&max_price=25&order_by=price&order=DESC&limit=5&offset=0`
+- **URL:** [https://backend-labs-x8vk.onrender.com/books?search_q=The&min_price=10&max_price=25&order_by=price&order=DESC&limit=5&offset=0](https://backend-labs-x8vk.onrender.com/books?search_q=The&min_price=10&max_price=25&order_by=price&order=DESC&limit=5&offset=0)
 - **Filters Applied:** Searches for `"The"` in title, filters price between `10` and `25`, sorts by `price DESC`, limits result set to `5` records with `offset=0`.
 
 ---
@@ -421,6 +424,7 @@ SELECT id, title FROM book WHERE id = 15;
 ## 📸 Verification & Screenshots
 
 ### 1. GET All Books Default (`GET /books`)
+- **Render Live URL:** [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books)
 - **Endpoint:** `GET /books`
 - **Expected HTTP Status:** `200 OK`
 - **Description:** Returns the first 10 books according to default pagination settings.
@@ -428,6 +432,7 @@ SELECT id, title FROM book WHERE id = 15;
 ![GET All Books Default](screenshots/get-all.png)
 
 ### 2. Search Query Parameter (`GET /books?search_q=Clean`)
+- **Render Live URL:** [https://backend-labs-x8vk.onrender.com/books?search_q=Clean](https://backend-labs-x8vk.onrender.com/books?search_q=Clean)
 - **Endpoint:** `GET /books?search_q=Clean`
 - **Expected HTTP Status:** `200 OK`
 - **Description:** Case-insensitive partial title search filtering records containing "Clean".
@@ -435,6 +440,7 @@ SELECT id, title FROM book WHERE id = 15;
 ![Search Query](screenshots/get-all-search.png)
 
 ### 3. Sorting by Price Ascending (`GET /books?order_by=price&order=ASC`)
+- **Render Live URL:** [https://backend-labs-x8vk.onrender.com/books?order_by=price&order=ASC&limit=5](https://backend-labs-x8vk.onrender.com/books?order_by=price&order=ASC&limit=5)
 - **Endpoint:** `GET /books?order_by=price&order=ASC&limit=5`
 - **Expected HTTP Status:** `200 OK`
 - **Description:** Orders records by the `price` column in ascending order with whitelisting protection.
@@ -442,6 +448,7 @@ SELECT id, title FROM book WHERE id = 15;
 ![Sorting by Price](screenshots/get-sort-price.png)
 
 ### 4. Price Range Filter (`GET /books?min_price=12&max_price=20`)
+- **Render Live URL:** [https://backend-labs-x8vk.onrender.com/books?min_price=12&max_price=20](https://backend-labs-x8vk.onrender.com/books?min_price=12&max_price=20)
 - **Endpoint:** `GET /books?min_price=12&max_price=20`
 - **Expected HTTP Status:** `200 OK`
 - **Description:** Bounds results within a minimum and maximum price range.
@@ -449,6 +456,7 @@ SELECT id, title FROM book WHERE id = 15;
 ![Price Range Filter](screenshots/get-filter-price.png)
 
 ### 5. Pagination (`GET /books?limit=5&offset=5`)
+- **Render Live URL:** [https://backend-labs-x8vk.onrender.com/books?limit=5&offset=5](https://backend-labs-x8vk.onrender.com/books?limit=5&offset=5)
 - **Endpoint:** `GET /books?limit=5&offset=5`
 - **Expected HTTP Status:** `200 OK`
 - **Description:** Demonstrates page 2 pagination by retrieving 5 records after skipping the first 5.
@@ -456,6 +464,7 @@ SELECT id, title FROM book WHERE id = 15;
 ![Pagination](screenshots/get-pagination.png)
 
 ### 6. GET Single Book by ID (`GET /books/1`)
+- **Render Live URL:** [https://backend-labs-x8vk.onrender.com/books/1](https://backend-labs-x8vk.onrender.com/books/1)
 - **Endpoint:** `GET /books/1`
 - **Expected HTTP Status:** `200 OK`
 - **Description:** Retrieves the single book object matching primary key ID 1.
@@ -463,6 +472,7 @@ SELECT id, title FROM book WHERE id = 15;
 ![GET Single Book](screenshots/get-one.png)
 
 ### 7. 404 Not Found for Non-Existent ID (`GET /books/999`)
+- **Render Live URL:** [https://backend-labs-x8vk.onrender.com/books/999](https://backend-labs-x8vk.onrender.com/books/999)
 - **Endpoint:** `GET /books/999`
 - **Expected HTTP Status:** `404 Not Found`
 - **Description:** Valid numeric ID that does not exist in the database returns uniform JSON error.
@@ -498,6 +508,7 @@ SELECT id, title FROM book WHERE id = 15;
 ![DELETE Book](screenshots/delete-success.png)
 
 ### 12. Catch-All Route Not Found (`GET /unknown-route`)
+- **Render Live URL:** [https://backend-labs-x8vk.onrender.com/unknown-route](https://backend-labs-x8vk.onrender.com/unknown-route)
 - **Endpoint:** `GET /unknown-route`
 - **Expected HTTP Status:** `404 Not Found`
 - **Description:** Any undefined route triggers the fallback 404 handler with `{ "message": "Route not found" }`.
@@ -519,29 +530,37 @@ SELECT id, title FROM book WHERE id = 15;
 
 ## 🚀 Deployment on Render
 
-### Why Root Directory configuration matters
-In a monorepo containing multiple labs (`lab-01/`, `lab-02/`, `lab-03/`), Render requires configuring the **Root Directory** setting for each Web Service.
-- If Render's **Root Directory** is left at default or set to `lab-02`, Render runs `lab-02/app.js` without query parameter support.
-- Setting the **Root Directory** to `lab-03` ensures Render installs dependencies and launches the full Lab 3 implementation.
+### Active Live Web Service
+- **Service Name:** `backend-labs-x8vk`
+- **Live Deployment Base URL:** [https://backend-labs-x8vk.onrender.com](https://backend-labs-x8vk.onrender.com)
+- **Live Books Endpoint:** [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books)
 
-### Step-by-Step Render Deployment Guide
+### Verified Live Endpoints & Filter Links
 
-1. **Access Render Dashboard:** Go to [dashboard.render.com](https://dashboard.render.com/).
-2. **Create New Web Service:**
-   - Click **"New +"** → **"Web Service"**.
-   - Connect repository: `https://github.com/Arjun9311/backend-labs`.
-3. **Configure Service Settings:**
+| Endpoint / Feature | Live URL | Expected Behavior |
+|:---|:---|:---|
+| **Root Redirection** | [https://backend-labs-x8vk.onrender.com/](https://backend-labs-x8vk.onrender.com/) | Redirects to `/books` |
+| **All Books (Default 10)** | [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books) | Returns first 10 books |
+| **Search by Title** | [https://backend-labs-x8vk.onrender.com/books?search_q=Clean](https://backend-labs-x8vk.onrender.com/books?search_q=Clean) | Returns Clean Code |
+| **Sort by Price Ascending** | [https://backend-labs-x8vk.onrender.com/books?order_by=price&order=ASC](https://backend-labs-x8vk.onrender.com/books?order_by=price&order=ASC) | Returns books ordered 8 to 40 |
+| **Sort by Price Descending** | [https://backend-labs-x8vk.onrender.com/books?order_by=price&order=DESC](https://backend-labs-x8vk.onrender.com/books?order_by=price&order=DESC) | Returns books ordered 40 to 8 |
+| **Pagination (Page 2)** | [https://backend-labs-x8vk.onrender.com/books?limit=5&offset=5](https://backend-labs-x8vk.onrender.com/books?limit=5&offset=5) | Returns records 6 to 10 |
+| **Price Range (12 to 20)** | [https://backend-labs-x8vk.onrender.com/books?min_price=12&max_price=20](https://backend-labs-x8vk.onrender.com/books?min_price=12&max_price=20) | Bounds price between 12 and 20 |
+| **Combined Filters** | [https://backend-labs-x8vk.onrender.com/books?search_q=The&min_price=10&max_price=25&order_by=price&order=DESC&limit=5&offset=0](https://backend-labs-x8vk.onrender.com/books?search_q=The&min_price=10&max_price=25&order_by=price&order=DESC&limit=5&offset=0) | Search + Range + Sort + Pagination |
+| **Single Record (ID 1)** | [https://backend-labs-x8vk.onrender.com/books/1](https://backend-labs-x8vk.onrender.com/books/1) | Returns Pride and Prejudice |
+| **404 Not Found (ID 999)** | [https://backend-labs-x8vk.onrender.com/books/999](https://backend-labs-x8vk.onrender.com/books/999) | Returns `{"message": "Book not found"}` |
 
-| Setting | Recommended Value |
+### Monorepo Root Directory Configuration
+In a monorepo containing multiple labs (`lab-01/`, `lab-02/`, `lab-03/`), Render requires setting the **Root Directory** setting to `lab-03`:
+
+| Setting | Configuration Value |
 |:---|:---|
-| **Name** | `arjun-backend-lab03` |
+| **Service Name** | `backend-labs-x8vk` |
 | **Root Directory** | `lab-03` |
 | **Runtime** | `Node` |
 | **Build Command** | `npm install` |
 | **Start Command** | `npm start` |
 | **Environment Variable** | `NODE_VERSION: 20.18.0` |
-
-4. **Deploy:** Click **Create Web Service**. Once deployed, Render will provide a live URL (e.g. `https://arjun-backend-lab03.onrender.com`).
 
 ---
 
@@ -579,6 +598,7 @@ In this lab, the following core backend engineering competencies were mastered:
 3. **Strict Validation & Uniform Error Responses:** Standardized request body validation and ensured all error responses conform to `{ "message": "..." }`.
 4. **Diagnostic & Debugging Acumen:** Successfully resolved port conflicts (`EADDRINUSE`), broken module paths (`MODULE_NOT_FOUND`), table name mismatches, and unawaited asynchronous promises.
 5. **Quality Assurance:** Verified API correctness with both direct SQLite CLI inspection and 29 automated tests.
+6. **Cloud Deployment:** Successfully deployed and verified the production application live on Render at [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books).
 
 ---
 

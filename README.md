@@ -3,6 +3,7 @@
 > **Student:** VARUKURI ARJUN · **Reg No:** 252U1R1268 · **Section:** CSE-2E (211)  
 > **Course:** Backend Development Fundamentals · Year II Term II  
 > **College:** Aurora Deemed-to-be-University · **Faculty:** Mr Yugandhar Gurjalwar  
+> **Live Deployment (Lab 3):** [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books)  
 > **Repository:** [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs)
 
 ---
@@ -17,6 +18,7 @@
 | **Course** | Backend Development Fundamentals · Year II Term II |
 | **Faculty** | Mr Yugandhar Gurjalwar |
 | **College** | Aurora Deemed-to-be-University |
+| **Live Deployment (Lab 3)** | [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books) |
 | **GitHub Repository** | [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs) |
 
 ---
@@ -25,11 +27,11 @@
 
 This repository contains the complete laboratory submissions for Backend Development Fundamentals:
 
-| Lab | Directory | Description & Key Topics | Status | Test Suite |
+| Lab | Directory & Live Link | Description & Key Topics | Status | Test Suite |
 |:---:|:---|:---|:---:|:---:|
 | **Lab 1** | [`lab-01/`](lab-01/README.md) | **Node.js & Express Server**: HTTP servers, core routes, JSON responses, error handling, package manifest anatomy | `Completed` | Verified via curl & Postman |
 | **Lab 2** | [`lab-02/`](lab-02/README.md) | **SQLite Database & CRUD**: Asynchronous SQLite integration, schema design, parameterized queries, full CRUD operations | `Completed` | Verified via automated test runner & Postman |
-| **Lab 3** | [`lab-03/`](lab-03/README.md) | **REST API, Query Parameters & Debugging**: Title search, price range filtering, dynamic column whitelisting, limit/offset pagination, reusable validation, 4 deliberate backend bug diagnostics | `Completed` | **29 / 29 Tests Passing** |
+| **Lab 3** | [`lab-03/`](lab-03/README.md)<br>[🌐 **Open Live API**](https://backend-labs-x8vk.onrender.com/books) | **REST API, Query Parameters & Debugging**: Title search, price range filtering, dynamic column whitelisting, limit/offset pagination, reusable validation, 4 deliberate backend bug diagnostics | `Completed` | **29 / 29 Tests Passing** |
 
 ---
 
@@ -85,6 +87,8 @@ Run automated test suite:
 npm test
 # 29 tests passing
 ```
+Or test live in browser:
+- [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books)
 
 ---
 
