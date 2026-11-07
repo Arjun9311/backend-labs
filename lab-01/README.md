@@ -1,11 +1,45 @@
-# Lab 1: Node.js and Express server
+# Lab 1: Node.js and Express Server
 
-**Name:** VARUKURI ARJUN · **Registration No:** 252U1R1268 · **Section:** CSE-2E (211)  
-**Live link:** [PASTE DEPLOYED URL HERE or write why it couldn't be deployed + add Postman screenshots]
+> **🔗 GitHub Repository:** [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs)  
+> **🌐 Local Base URL:** [http://localhost:3000](http://localhost:3000)
 
-## How to run
+---
 
-1. **Navigate to the lab folder:**
+## 📋 Student Information
+
+| Field | Details |
+|:---|:---|
+| **Name** | VARUKURI ARJUN |
+| **Registration Number** | 252U1R1268 |
+| **Section** | CSE-2E (211) |
+| **Course** | Backend Development Fundamentals · Year II Term II |
+| **Faculty** | Mr Yugandhar Gurjalwar |
+| **College** | Aurora Deemed-to-be-University |
+| **Repository** | [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs) |
+
+---
+
+## 🎯 Objective
+
+Initialize and structure a foundational Node.js and Express.js backend application. Understand HTTP server mechanics by constructing both a core Node.js `http` module server and an Express web framework server. Implement basic routing, handle JSON payloads, format dynamic responses, configure environment variables, understand `package.json` manifest structure, and handle 404 unhandled paths.
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|:---|:---|
+| **Node.js** | JavaScript runtime environment for backend development |
+| **Express.js** | Minimal and flexible Node.js web application framework |
+| **HTTP Module** | Built-in Node.js module used to illustrate foundational HTTP request/response lifecycles |
+| **Postman & curl** | Tooling used to send HTTP requests and verify responses |
+| **Git & GitHub** | Distributed version control and source code repository |
+
+---
+
+## ⚙️ Installation & Setup
+
+1. **Navigate to the Lab 1 directory:**
    ```bash
    cd lab-01
    ```
@@ -15,72 +49,111 @@
    npm install
    ```
 
-3. **Configure environment variables:**
-   Copy the example environment file to create your local `.env`:
+3. **Configure Environment:**
+   Create `.env` from `.env.example`:
    ```bash
-   # On Windows (cmd/PowerShell) or Linux/macOS
    cp .env.example .env
    ```
-   *Note:* The required environment variable is `PORT` (e.g., `PORT=3000`). No sensitive secrets or credentials are required.
+   *Environment variables:*
+   - `PORT=3000`
 
-4. **Run the Express server:**
+4. **Start the Express Server:**
    ```bash
    npm start
    ```
-   The server will start at `http://localhost:3000`.
+   The Express server listens at `http://localhost:3000`.
 
-5. **Run the plain HTTP server (optional):**
+5. **Start the Plain HTTP Server (Alternative):**
    ```bash
    npm run plain
    ```
-   The plain HTTP server will start at `http://localhost:3000`.
+   The core HTTP server listens at `http://localhost:3000`.
 
-## Endpoints
+---
 
-| Method | Path | Description | Expected Status |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/` | Returns welcome text message | `200 OK` |
-| `GET` | `/about` | Returns JSON object with student details (`name`, `section`) | `200 OK` |
-| `GET` | `/time` | Returns current date and time as plain text (`new Date().toString()`) | `200 OK` |
-| `ALL` | `/*` (any unknown path) | Catch-all handler for undefined routes (`"404 - Page not found"`) | `404 Not Found` |
+## 📡 API Endpoints
 
-## Screenshots
+| Method | Path | Example URL | Description | Status Code |
+|:---:|:---|:---|:---|:---:|
+| `GET` | `/` | `http://localhost:3000/` | Root welcome message | `200 OK` |
+| `GET` | `/about` | `http://localhost:3000/about` | Student information JSON object | `200 OK` |
+| `GET` | `/time` | `http://localhost:3000/time` | Current server timestamp in plain text | `200 OK` |
+| `ALL` | `/*` | `http://localhost:3000/undefined-route` | Catch-all handler for undefined routes | `404 Not Found` |
 
-![Home route](screenshots/home.png)
+---
 
-![About route](screenshots/about.png)
+## 📤 Sample Responses
 
-![Time route](screenshots/time.png)
+### GET /
+```text
+Hello, World! Welcome to Lab 1 Express Server.
+```
 
-![404 route](screenshots/404.png)
+### GET /about
+```json
+{
+  "name": "VARUKURI ARJUN",
+  "registrationNumber": "252U1R1268",
+  "section": "CSE-2E (211)",
+  "course": "Backend Development Fundamentals"
+}
+```
 
-## package.json fields explained
+### GET /time
+```text
+Sat Nov 07 2026 09:00:00 GMT+0530 (India Standard Time)
+```
 
-- **`name`**: The unique name/identifier of the package or project (e.g., `lab-01`).
-- **`version`**: The current release version of the application following Semantic Versioning (`major.minor.patch`).
-- **`description`**: A concise human-readable summary of what the project does.
-- **`main`**: The primary entry point file of the application that gets executed by default (`server.js`).
-- **`scripts`**: Aliases/shortcuts for running command-line tasks (e.g., `npm start` runs `node server.js` and `npm run plain` runs `node plain-server.js`).
-- **`dependencies`**: A list of third-party packages required for the project to run in production (e.g., `express`).
+### GET /unknown
+```text
+404 - Page not found
+```
+
+---
+
+## 📸 Verification & Screenshots
+
+### 1. Root Route (`GET /`)
+![Home Route](screenshots/home.png)
+
+### 2. About Route (`GET /about`)
+![About Route](screenshots/about.png)
+
+### 3. Server Time Route (`GET /time`)
+![Time Route](screenshots/time.png)
+
+### 4. Catch-All Route (`404 Not Found`)
+![404 Route](screenshots/404.png)
+
+---
+
+## 📦 `package.json` Fields Explained
+
+- **`name`**: The unique identifier of the package/project (`lab-01`).
+- **`version`**: The current semantic version of the application (`1.0.0`).
+- **`description`**: A concise explanation of the repository or subproject purpose.
+- **`main`**: The primary entry point file of the application executed on start (`server.js`).
+- **`scripts`**: Executable CLI shortcut commands (e.g. `npm start` runs `node server.js`).
+- **`dependencies`**: Production dependencies required for application execution (e.g. `express`).
 - **`author`**: The creator or maintainer of the project (`VARUKURI ARJUN`).
-- **`license`**: The legal licensing terms determining how others may use or distribute the code (e.g., `ISC`).
+- **`license`**: The software distribution license governing usage (`ISC`).
 
-## Viva notes
+---
 
-- **`package.json` vs `node_modules`:**
-  - `package.json` is a lightweight project manifest file tracked in version control (Git). It documents project metadata, script commands, and the list of direct dependencies along with version rules.
-  - `node_modules` is a local directory generated by `npm install` that houses the actual physical code of all installed dependencies and their recursive sub-dependencies. Because it is bulky and easily reproducible from `package.json` and `package-lock.json`, it is excluded from Git via `.gitignore`.
+## 🎓 Viva Questions & Answers
 
-- **What `app.listen` does:**
-  - `app.listen(PORT, callback)` binds the Express application to a specific network port on the host machine and starts listening for incoming client TCP connections. Once the port is open and ready to accept requests, the optional callback function is triggered (typically used to log a confirmation message).
+| Question | Answer |
+|:---|:---|
+| **What is the difference between `package.json` and `node_modules`?** | `package.json` is a lightweight manifest file committed to version control that records project metadata, script commands, and direct dependencies with semantic version rules. `node_modules` is an uncommitted local directory generated by `npm install` containing the downloaded source code of all direct and transitive dependencies. |
+| **What does `app.listen()` do under the hood?** | `app.listen(PORT, callback)` binds the Express application to a specific TCP port and network interface on the host machine. It initializes an HTTP server instance (wrapping Node's native `http.createServer`) and continuously listens for incoming client TCP socket connections, invoking the callback once listening. |
+| **What do `req` (Request) and `res` (Response) represent?** | **`req`** encapsulates the incoming HTTP request from the client, including headers, query parameters, URL path, route params, and body data. **`res`** represents the outgoing HTTP response, exposing methods to set HTTP status codes (`res.status()`), configure headers (`res.set()`), and send back content (`res.send()`, `res.json()`). |
 
-- **What request and response represent:**
-  - **`req` (Request object):** Represents the incoming HTTP request received from the client (e.g., browser or Postman). It contains information like request method, requested URL/path, headers, query parameters, URL parameters, and body payloads.
-  - **`res` (Response object):** Represents the outgoing HTTP response that Express sends back to the client. It provides methods to set HTTP status codes (`res.status()`), response headers (`res.set()`), and send back data (`res.send()`, `res.json()`, `res.end()`).
+---
 
-## Notes
+## 👤 Author
 
-### Problems faced and how I solved them
-- *Problem 1:* [Describe any issue faced, e.g., port conflict, package installation error, or route matching order]
-- *Solution 1:* [Describe how you resolved it, e.g., killed process on port 3000, ensured 404 handler was placed after all routes]
-
+**VARUKURI ARJUN**  
+Registration Number: **252U1R1268**  
+Section: **CSE-2E (211)**  
+Aurora Deemed-to-be-University  
+Faculty: **Mr Yugandhar Gurjalwar**
