@@ -409,9 +409,14 @@ async function initializeDBAndServer(customPort, customDbPath) {
   }
 }
 
+// Helper to get active db instance (used by test suites and scripts)
+function getDb() {
+  return db;
+}
+
 // Start server if run directly
 if (require.main === module) {
   initializeDBAndServer();
 }
 
-module.exports = { app, initializeDBAndServer, validateBook };
+module.exports = { app, initializeDBAndServer, validateBook, getDb };
