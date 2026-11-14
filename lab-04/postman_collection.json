@@ -1,0 +1,418 @@
+{
+  "info": {
+    "_postman_id": "lab04-registration-login-jwt",
+    "name": "Lab 4: Registration, Login and JWT",
+    "description": "Postman Collection for Lab 4: User registration with bcrypt hashing, login authentication, and JWT generation.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Success cases",
+      "item": [
+        {
+          "name": "1. POST /register/ - Register new user",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"arjun_dev\",\n  \"name\": \"Varukuri Arjun\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register",
+                ""
+              ]
+            },
+            "description": "Registers a new user account with bcrypt hashed password. Expected status: 201 Created."
+          },
+          "response": []
+        },
+        {
+          "name": "2. POST /login/ - Login with correct credentials",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"arjun_dev\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login",
+                ""
+              ]
+            },
+            "description": "Authenticates user against bcrypt hash and returns signed JWT token. Expected status: 200 OK."
+          },
+          "response": []
+        },
+        {
+          "name": "3. GET /books - Existing Lab 3 route",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/books",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "books"
+              ]
+            },
+            "description": "Verifies that existing /books routes from Lab 3 remain functional and open. Expected status: 200 OK."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Failure cases",
+      "item": [
+        {
+          "name": "1. POST /register/ - Duplicate username",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"arjun_dev\",\n  \"name\": \"Duplicate Arjun\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register",
+                ""
+              ]
+            },
+            "description": "Fails registration because username already exists. Expected status: 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "2. POST /register/ - Missing username",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Varukuri Arjun\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register",
+                ""
+              ]
+            },
+            "description": "Fails validation due to missing username. Expected status: 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "3. POST /register/ - Missing name",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"newuser2\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register",
+                ""
+              ]
+            },
+            "description": "Fails validation due to missing name. Expected status: 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "4. POST /register/ - Missing password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"newuser3\",\n  \"name\": \"Varukuri Arjun\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register",
+                ""
+              ]
+            },
+            "description": "Fails validation due to missing password. Expected status: 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "5. POST /register/ - Password shorter than 6 characters",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"newuser4\",\n  \"name\": \"Varukuri Arjun\",\n  \"password\": \"12345\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register",
+                ""
+              ]
+            },
+            "description": "Fails validation because password is < 6 characters. Expected status: 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "6. POST /register/ - Non-string field values",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": 99999,\n  \"name\": \"Varukuri Arjun\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/register/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "register",
+                ""
+              ]
+            },
+            "description": "Fails validation because username is not a string. Expected status: 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "7. POST /login/ - Unknown username",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"non_existent_user\",\n  \"password\": \"secret123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login",
+                ""
+              ]
+            },
+            "description": "Fails authentication for non-existent username with generic message. Expected status: 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "8. POST /login/ - Wrong password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"arjun_dev\",\n  \"password\": \"incorrect_pass\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login",
+                ""
+              ]
+            },
+            "description": "Fails authentication for incorrect password with identical generic message. Expected status: 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "9. POST /login/ - Missing password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"arjun_dev\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login",
+                ""
+              ]
+            },
+            "description": "Fails validation due to missing password field. Expected status: 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "10. POST /login/ - Malformed JSON payload",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"arjun_dev\",\n  broken_json\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login",
+                ""
+              ]
+            },
+            "description": "Express JSON parser catches malformed syntax and returns uniform 400 error. Expected status: 400 Bad Request."
+          },
+          "response": []
+        },
+        {
+          "name": "11. GET /login/ - Unsupported HTTP method",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/login/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login",
+                ""
+              ]
+            },
+            "description": "GET on /login/ is not mapped and triggers the catch-all 404 handler. Expected status: 404 Not Found."
+          },
+          "response": []
+        },
+        {
+          "name": "12. GET /unknown-route - Undefined route",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/unknown-route",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "unknown-route"
+              ]
+            },
+            "description": "Catch-all 404 handler returns uniform { \"message\": \"Route not found\" }. Expected status: 404 Not Found."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
