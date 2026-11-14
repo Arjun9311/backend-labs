@@ -111,6 +111,48 @@ app.post(['/register', '/register/'], async (req, res, next) => {
   }
 });
 
+// Auth Route 2: POST /login/ - Authenticate user and issue JWT token
+app.post(['/login', '/login/'], async (req, res, next) => {
+  try {
+    const { username, password } = req.body || {};
+
+    // 1. Validate that username is provided as a non-empty string
+    if (typeof username !== 'string' || username.trim().length === 0) {
+      return res.status(400).json({ message: 'Username is required and must be a non-empty string' });
+    }
+
+    // 2. Validate that password is provided as a non-empty string
+    if (typeof password !== 'string' || password.length === 0) {
+      return res.status(400).json({ message: 'Password is required and must be a non-empty string' });
+    }
+
+    const trimmedUsername = username.trim();
+
+    // 3. Look up user by username using parameterized query (? placeholder)
+    const selectUserQuery = 'SELECT * FROM user WHERE username = ?;';
+    const user = await db.get(selectUserQuery, [trimmedUsername]);
+
+    // 4. Unknown user check (identical generic message prevents username enumeration)
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid username or password' });
+    }
+
+    // 5. Verify password with bcrypt.compare against stored hash
+    const isPasswordMatched = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatched) {
+      return res.status(400).json({ message: 'Invalid username or password' });
+    }
+
+    // 6. Generate JWT token with username-only payload (valid for 1 hour)
+    const token = jwt.sign({ username: user.username }, JWT_SECRET, { expiresIn: '1h' });
+
+    // 7. Return JWT token with 200 OK
+    res.status(200).json({ jwt_token: token });
+  } catch (error) {
+    next(error);
+  }
+});
+
 // Route 1: GET /books - Retrieve books with search, sort, price filter, and pagination
 app.get(['/books', '/books/'], async (req, res, next) => {
   try {
