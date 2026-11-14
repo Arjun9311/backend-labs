@@ -32,6 +32,7 @@ This repository contains the complete laboratory submissions for Backend Develop
 | **Lab 1** | [`lab-01/`](lab-01/README.md) | **Node.js & Express Server**: HTTP servers, core routes, JSON responses, error handling, package manifest anatomy | `Completed` | Verified via curl & Postman |
 | **Lab 2** | [`lab-02/`](lab-02/README.md) | **SQLite Database & CRUD**: Asynchronous SQLite integration, schema design, parameterized queries, full CRUD operations | `Completed` | Verified via automated test runner & Postman |
 | **Lab 3** | [`lab-03/`](lab-03/README.md)<br>[🌐 **Open Live API**](https://backend-labs-x8vk.onrender.com/books) | **REST API, Query Parameters & Debugging**: Title search, price range filtering, dynamic column whitelisting, limit/offset pagination, reusable validation, 4 deliberate backend bug diagnostics | `Completed` | **29 / 29 Tests Passing** |
+| **Lab 4** | [`lab-04/`](lab-04/README.md) | **Registration, Login & JWT**: User authentication, bcrypt password hashing (10 salt rounds), JWT token issuance (1h expiry), token decoding helper, parameterized SQLite queries | `Completed` | **15 / 15 Tests Passing** |
 
 ---
 
@@ -92,6 +93,22 @@ Or test live in browser:
 
 ---
 
+### 5. Run Lab 4 (Registration, Login & JWT)
+```bash
+cd ../lab-04
+npm install
+node setup-db.js
+npm start
+# Server listens at http://localhost:3000
+```
+Run automated test suite:
+```bash
+npm test
+# 15 tests passing
+```
+
+---
+
 ## 📸 Verification & Screenshots Preview
 
 Detailed execution screenshots are available inside each lab directory:
@@ -126,6 +143,14 @@ Detailed execution screenshots are available inside each lab directory:
   - `route-not-found-404.png` — Undefined endpoint catch-all (`404 Not Found`)
   - `test-suite.png` — 29 passing automated test cases
   - `db-after.png` — Formatted SQLite table state after operations
+
+- **Lab 4 Screenshots Placeholder:** [`lab-04/screenshots/`](lab-04/screenshots/)
+  - `register-201.png` — Successful registration with bcrypt hash
+  - `register-400.png` — Duplicate username validation
+  - `login-200.png` — Successful authentication returning JWT
+  - `login-400.png` — Wrong password / invalid credentials handling
+  - `db-hashes.png` — Database showing `$2b$` bcrypt hash
+  - `jwt-io.png` — Decoded token claims without secret
 
 ---
 
