@@ -144,7 +144,7 @@ Detailed execution screenshots are available inside each lab directory:
   - `test-suite.png` — 29 passing automated test cases
   - `db-after.png` — Formatted SQLite table state after operations
 
-- **Lab 4 Screenshots Placeholder:** [`lab-04/screenshots/`](lab-04/screenshots/)
+- **Lab 4 Screenshots:** [`lab-04/screenshots/`](lab-04/screenshots/)
   - `register-201.png` — Successful registration with bcrypt hash
   - `register-400.png` — Duplicate username validation
   - `login-200.png` — Successful authentication returning JWT

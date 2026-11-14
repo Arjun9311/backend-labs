@@ -57,15 +57,43 @@
 
 ## Screenshots
 
+### 1. User Registration Success (`POST /register/`)
+- **Endpoint:** `POST /register/`
+- **Status Code:** `201 Created`
+- **Description:** Successfully registers a new user with bcrypt password hashing (10 salt rounds) and returns confirmation message.
+
 ![Register success](screenshots/register-201.png)
+
+### 2. User Registration Duplicate Error (`POST /register/`)
+- **Endpoint:** `POST /register/`
+- **Status Code:** `400 Bad Request`
+- **Description:** Rejects duplicate username registration with `{ "message": "User already exists" }`.
 
 ![Register duplicate](screenshots/register-400.png)
 
+### 3. User Login Success & JWT Issuance (`POST /login/`)
+- **Endpoint:** `POST /login/`
+- **Status Code:** `200 OK`
+- **Description:** Authenticates credentials against bcrypt hash and issues a signed JSON Web Token (valid for 1 hour).
+
 ![Login success](screenshots/login-200.png)
+
+### 4. User Login Invalid Password (`POST /login/`)
+- **Endpoint:** `POST /login/`
+- **Status Code:** `400 Bad Request`
+- **Description:** Rejects incorrect password with generic `{ "message": "Invalid username or password" }` to prevent account enumeration.
 
 ![Login wrong password](screenshots/login-400.png)
 
+### 5. SQLite Database User Table Verification
+- **Command:** `sqlite3 bookstore.db "SELECT id, username, name, password FROM user;"`
+- **Description:** Verifies that user passwords are stored strictly as 60-character bcrypt `$2b$` hashes rather than plaintext.
+
 ![Database shows hashes](screenshots/db-hashes.png)
+
+### 6. Decoded JWT Structure via Debugger (jwt.io)
+- **Tool:** JWT Debugger & Token Inspector
+- **Description:** Demonstrates the three dot-separated parts (Header, Payload, Signature) and confirms the payload contains only the `username`, `iat`, and `exp` claims with zero sensitive data.
 
 ![jwt.io decoded token](screenshots/jwt-io.png)
 
