@@ -4,6 +4,7 @@
 > **Course:** Backend Development Fundamentals · Year II Term II  
 > **College:** Aurora Deemed-to-be-University · **Faculty:** Mr Yugandhar Gurjalwar  
 > **Live Deployment (Lab 3):** [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books)  
+> **Live Deployment (Lab 4):** [https://backend-labs-1-xcaw.onrender.com/](https://backend-labs-1-xcaw.onrender.com/)  
 > **Repository:** [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs)
 
 ---
@@ -19,6 +20,7 @@
 | **Faculty** | Mr Yugandhar Gurjalwar |
 | **College** | Aurora Deemed-to-be-University |
 | **Live Deployment (Lab 3)** | [https://backend-labs-x8vk.onrender.com/books](https://backend-labs-x8vk.onrender.com/books) |
+| **Live Deployment (Lab 4)** | [https://backend-labs-1-xcaw.onrender.com/](https://backend-labs-1-xcaw.onrender.com/) |
 | **GitHub Repository** | [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs) |
 
 ---
@@ -32,7 +34,7 @@ This repository contains the complete laboratory submissions for Backend Develop
 | **Lab 1** | [`lab-01/`](lab-01/README.md) | **Node.js & Express Server**: HTTP servers, core routes, JSON responses, error handling, package manifest anatomy | `Completed` | Verified via curl & Postman |
 | **Lab 2** | [`lab-02/`](lab-02/README.md) | **SQLite Database & CRUD**: Asynchronous SQLite integration, schema design, parameterized queries, full CRUD operations | `Completed` | Verified via automated test runner & Postman |
 | **Lab 3** | [`lab-03/`](lab-03/README.md)<br>[🌐 **Open Live API**](https://backend-labs-x8vk.onrender.com/books) | **REST API, Query Parameters & Debugging**: Title search, price range filtering, dynamic column whitelisting, limit/offset pagination, reusable validation, 4 deliberate backend bug diagnostics | `Completed` | **29 / 29 Tests Passing** |
-| **Lab 4** | [`lab-04/`](lab-04/README.md) | **Registration, Login & JWT**: User authentication, bcrypt password hashing (10 salt rounds), JWT token issuance (1h expiry), token decoding helper, parameterized SQLite queries | `Completed` | **15 / 15 Tests Passing** |
+| **Lab 4** | [`lab-04/`](lab-04/README.md)<br>[🌐 **Open Live API**](https://backend-labs-1-xcaw.onrender.com/) | **Registration, Login & JWT**: User authentication, bcrypt password hashing (10 salt rounds), JWT token issuance (1h expiry), token decoding helper, parameterized SQLite queries | `Completed` | **15 / 15 Tests Passing** |
 
 ---
 
@@ -106,6 +108,8 @@ Run automated test suite:
 npm test
 # 15 tests passing
 ```
+Or test live in browser:
+- [https://backend-labs-1-xcaw.onrender.com/books](https://backend-labs-1-xcaw.onrender.com/books)
 
 ---
 

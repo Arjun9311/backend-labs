@@ -1,7 +1,11 @@
 # Lab 4: Registration, login and JWT
 
+> **🔗 Live Deployment URL:** [https://backend-labs-1-xcaw.onrender.com/](https://backend-labs-1-xcaw.onrender.com/)  
+> **📚 Live Books Endpoint:** [https://backend-labs-1-xcaw.onrender.com/books](https://backend-labs-1-xcaw.onrender.com/books)  
+> **📂 GitHub Repository:** [https://github.com/Arjun9311/backend-labs](https://github.com/Arjun9311/backend-labs)
+
 **Name:** VARUKURI ARJUN · **Registration No:** 252U1R1268 · **Section:** CSE-2E (211)  
-**Live link:** [PASTE DEPLOYED URL HERE, or explain why it couldn't be deployed and rely on the Postman screenshots]
+**Live link:** [https://backend-labs-1-xcaw.onrender.com/](https://backend-labs-1-xcaw.onrender.com/)
 
 ---
 
@@ -42,16 +46,16 @@
 
 ## Endpoints
 
-| Method | Path | Description | Success status | Error statuses |
-|:---:|:---|:---|:---:|:---|
-| `POST` | `/register/` | Registers a new user account, validates inputs, and stores password as a bcrypt hash | `201 Created` | `400 Bad Request` (validation error or username taken)<br>`500 Internal Server Error` |
-| `POST` | `/login/` | Authenticates user credentials via bcrypt comparison and issues a signed JWT token | `200 OK` | `400 Bad Request` (missing fields or invalid username/password)<br>`500 Internal Server Error` |
-| `GET` | `/books/` | Retrieves books matching search, sort, price filter, and pagination (from Lab 3) | `200 OK` | `400 Bad Request`<br>`500 Internal Server Error` |
-| `GET` | `/books/:bookId/` | Retrieves a single book by ID (from Lab 3) | `200 OK` | `400 Bad Request`<br>`404 Not Found`<br>`500 Internal Server Error` |
-| `POST` | `/books/` | Creates and inserts a new book record (from Lab 3) | `201 Created` | `400 Bad Request`<br>`500 Internal Server Error` |
-| `PUT` | `/books/:bookId/` | Updates an existing book record by ID (from Lab 3) | `200 OK` | `400 Bad Request`<br>`404 Not Found`<br>`500 Internal Server Error` |
-| `DELETE` | `/books/:bookId/` | Deletes a book record by ID (from Lab 3) | `200 OK` | `400 Bad Request`<br>`404 Not Found`<br>`500 Internal Server Error` |
-| `ALL` | `/*` | Catch-all handler for undefined routes | `404 Not Found` | `{"message": "Route not found"}` |
+| Method | Path | Live URL | Description | Success status | Error statuses |
+|:---:|:---|:---|:---|:---:|:---|
+| `POST` | `/register/` | [Live Endpoint](https://backend-labs-1-xcaw.onrender.com/register/) | Registers a new user account, validates inputs, and stores password as a bcrypt hash | `201 Created` | `400 Bad Request` (validation error or username taken)<br>`500 Internal Server Error` |
+| `POST` | `/login/` | [Live Endpoint](https://backend-labs-1-xcaw.onrender.com/login/) | Authenticates user credentials via bcrypt comparison and issues a signed JWT token | `200 OK` | `400 Bad Request` (missing fields or invalid username/password)<br>`500 Internal Server Error` |
+| `GET` | `/books/` | [Open Live Link](https://backend-labs-1-xcaw.onrender.com/books/) | Retrieves books matching search, sort, price filter, and pagination (from Lab 3) | `200 OK` | `400 Bad Request`<br>`500 Internal Server Error` |
+| `GET` | `/books/:bookId/` | [Open Live Link (ID 1)](https://backend-labs-1-xcaw.onrender.com/books/1/) | Retrieves a single book by ID (from Lab 3) | `200 OK` | `400 Bad Request`<br>`404 Not Found`<br>`500 Internal Server Error` |
+| `POST` | `/books/` | [Live Endpoint](https://backend-labs-1-xcaw.onrender.com/books/) | Creates and inserts a new book record (from Lab 3) | `201 Created` | `400 Bad Request`<br>`500 Internal Server Error` |
+| `PUT` | `/books/:bookId/` | [Live Endpoint (ID 15)](https://backend-labs-1-xcaw.onrender.com/books/15/) | Updates an existing book record by ID (from Lab 3) | `200 OK` | `400 Bad Request`<br>`404 Not Found`<br>`500 Internal Server Error` |
+| `DELETE` | `/books/:bookId/` | [Live Endpoint (ID 15)](https://backend-labs-1-xcaw.onrender.com/books/15/) | Deletes a book record by ID (from Lab 3) | `200 OK` | `400 Bad Request`<br>`404 Not Found`<br>`500 Internal Server Error` |
+| `ALL` | `/*` | [Open Live Link (Route 404)](https://backend-labs-1-xcaw.onrender.com/unknown-route) | Catch-all handler for undefined routes | `404 Not Found` | `{"message": "Route not found"}` |
 
 ---
 
@@ -152,6 +156,10 @@ Returning distinct messages like "User not found" versus "Incorrect password" al
 ---
 
 ## Deployment note
+
+- **Live Deployment URL:** [https://backend-labs-1-xcaw.onrender.com/](https://backend-labs-1-xcaw.onrender.com/)
+- **Live Books Endpoint:** [https://backend-labs-1-xcaw.onrender.com/books](https://backend-labs-1-xcaw.onrender.com/books)
+- **Monorepo Root Directory Setting:** `lab-04`
 
 On Render's free tier, the hosting environment uses an **ephemeral filesystem**. Any changes written to local disk (such as new user records inserted into SQLite's `bookstore.db`) are reset whenever the free instance sleeps, restarts, or deploys a new commit. For production applications, an external hosted relational database (e.g. PostgreSQL) would be utilized. When deploying this lab on Render, configure the **Root Directory** setting to `lab-04`.
 
